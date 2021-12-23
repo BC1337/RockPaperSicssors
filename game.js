@@ -1,9 +1,10 @@
-// randomly select rock paper or scissors
+        // randomly select rock paper or scissors
 let RNG = ['rock', 'paper', 'scissors'];
 let userPlay = ['rock', 'paper', 'scissors'];
+let computerPoints = 0;
+let playerPoints = 0;
 
-
-// players choice
+        // players choice
 function playerMove() {
     let rand = [Math.random(Math.random() * userPlay.length)];
     if (rand <= 0.33) {
@@ -15,7 +16,7 @@ function playerMove() {
     }
 }
 
-// computers choice
+        // computers choice
 function computerMove() {
     let rando = [Math.floor(Math.random() * RNG.length)];
     if (rando == 0) {
@@ -27,52 +28,73 @@ function computerMove() {
     }
 }
 
-//battle and declare winner
+        //battle and declare winner
 function playGame(playerSelection, computerSelection) {
     playerSelection = playerMove();
     computerSelection = computerMove();
-
-    playerSelection = prompt('Rock, Paper or Scissors?').toLowerCase();
-
+        // prompt user to make move
+   
+        // User picks rock
     if (playerSelection === ('rock') && computerSelection === ('rock')) {
-        return ('Tie game!');
+        return `Tie! you chose ${playerSelection} and computer also chose ${computerSelection}`;
     } else if (playerSelection === ('rock') && computerSelection === ('paper')) {
-        return ('You lose, paper beats rock!');
-    } else if (playerSelection === ('rock') && computerSelection === ('scissors'))
-        return ('You win! Rock beats scissors!')
-    else if (playerSelection === ('paper') && computerSelection === ('rock'))
-        return ('You win! Paper beats rock!')
+        computerPoints += 1;
+        return (`You Lose! ${computerSelection} beats ${playerSelection}`);
+    } else if (playerSelection === ('rock') && computerSelection === ('scissors')){
+        playerPoints += 1;
+        return `You Win! ${playerSelection} beats ${computerSelection}`;
+    }
+       
+
+
+        // User picks paper
+    else if (playerSelection === ('paper') && computerSelection === ('rock')){
+        playerPoints += 1;
+        return `You Win! ${playerSelection} beats ${computerSelection}`;
+    }
+    
     else if (playerSelection === ('paper') && computerSelection === ('paper'))
-        return ('Tie game!')
-    else if (playerSelection === ('paper') && computerSelection === ('scissors'))
-        return ('You lose! Scissors beats paper!')
-    else if (playerSelection === ('scissors') && computerSelection === ('rock'))
-        return ('You lose! Rock beats scissors!')
-    else if (playerSelection === ('scissors') && computerSelection === ('paper'))
-        return ('You win! Scissors beats paper!')
+    return `Tie! you chose ${playerSelection} and computer also chose ${computerSelection}`;
+    else if (playerSelection === ('paper') && computerSelection === ('scissors')){
+        computerPoints += 1;
+        return (`You Lose! ${computerSelection} beats ${playerSelection}`);
+    }
+       
+
+
+        // User picks scissors
+    else if (playerSelection === ('scissors') && computerSelection === ('rock')){
+        computerPoints += 1;
+        return (`You Lose! ${computerSelection} beats ${playerSelection}`);
+    }
+    else if (playerSelection === ('scissors') && computerSelection === ('paper')){
+        playerPoints += 1;
+        return `You Win! ${playerSelection} beats ${computerSelection}`;
+    }
     else if (playerSelection === ('scissors') && computerSelection === ('scissors'))
-        return ('Tie Game!')
+    return `Tie! you chose ${playerSelection} and computer also chose ${computerSelection}`;
 }
-
-function game(){
-console.log(playGame())
-console.log(playGame())
-console.log(playGame())
-console.log(playGame())
-console.log(playGame())
-console.log('Thanks for playing!');
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-//prompt user to select option and play round outputting winner
+        // plays 5 games, reports winner and thanks for playing
+        function game(){
+            for (i=1;i<6;i++){
+                let playerSelection = prompt('Write rock, paper, or scissors: ').toLowerCase();
+                const computerSelection = computerMove()
+                console.log('Round: '+i)
+                console.log(playGame(playerSelection, computerSelection));
+                if (i == 5){
+                    if (playerPoints > computerPoints){
+                        console.log(`WINNER WINNER! you had ${playerPoints} points and the computer had ${computerPoints} points`)
+                    }
+                    else if (playerPoints < computerPoints){
+                        return console.log(`Aww you lost! you had ${playerPoints} points and the computer had ${computerPoints} points`)
+                    }
+                    else{
+                        return console.log(`Tie you both had ${playerPoints} points`)
+                    }
+                }
+                else{
+                    continue
+                }
+            }
+        }
+        game();
