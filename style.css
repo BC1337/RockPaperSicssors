@@ -1,5 +1,12 @@
 @font-face {}
 
+#buttons{
+	display: flex;
+	position: absolute;
+	right: 50%;
+}
+
+
 
 /* COMMON STYLES 
   -------------------------------- */
