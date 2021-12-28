@@ -2,17 +2,46 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Function library example</title>
+  <title>Rock Paper Scissors</title>
   <style>
     input {
       font-size: 2em;
       margin: 10px 1px 0;
     }
   </style>
-  <script src="game.js"></script>
-  <link rel="stylesheet" href="styles.css" media="screen"> 
+  <script src="game.js" defer></script>
+  <link rel="stylesheet" href="style.css" media="screen"> 
 </head>
-<body>
+<body id = 'body'>
+  <header>
+  <h1>Rock Paper Scissors</h1>
+  </header>
 
+  <div class = "score-board">
+    <div id = "user-label" class ="badge">user</div>
+    <div id = "computer-label" class ="badge">comp</div>
+    <span id = "user-score">0</span>:<span id = "computer-score">0</span>
+  </div>
+
+  <div class="result">
+    <p>Paper covers rock. You win!</p>
+  </div>
+
+  <div class="choices">
+    <div class="choice" id ="r">
+      <img src='rock.png' alt='drawing of a rock'>
+    </div>
+    <div class="choice" id = "p">
+      <img src='paper.png' alt='drawing of a papers'>
+    </div>
+    <div class="choice" id = "s">
+      <img src='scissors.png' alt='drawing of a scissors'>
+    </div>
+  </div>
+
+    <p id = "action-message">Make your move.</p>
+  
+
+</div>
 </body>
 </html>
